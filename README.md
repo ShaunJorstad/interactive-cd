@@ -19,3 +19,4 @@ Exiting the program with `ctr-c` will not navigate to the chosen directory
 # Future features 
 - navigating to a directory that only contains a single directory will automatically move to the nested directory as well. Moving up will always navigate individually.
 - `Tab` and `Shift+Tab` when there are multiple matched files and directories will enter a selection mode. Hitting enter on any option will prompt the user with a list of programs to open that selection with. Selecting an option will exit the program, navigate the shell to the last working directory, and will open the file or directory with the chosen program. 
+- Selection mode could open a preview of the file beneath the list of files and directories
