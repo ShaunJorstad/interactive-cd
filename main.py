@@ -1,10 +1,12 @@
 from blessed import Terminal
 import os
 import subprocess
+import configparser
 
 term = Terminal()
 
 currentPath = os.getcwd()
+shellScriptPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result.txt") 
 
 currentPathCoordinates = (0, 0)
 inputCoordinates = (0, 1)
@@ -47,13 +49,14 @@ def run():
                     elif key.code == KEY_TAB and len(tmpPath) > 0 and autoComplete is not None:
                         print(term.home() + term.clear() + "os cd called")
                         if autoComplete[1] == "directory":
-                            os.chdir(os.path.join(currentPath, autoComplete[0]))
+                            os.chdir(os.path.join(
+                                currentPath, autoComplete[0]))
                             pathHit = True
                     elif key.code == KEY_TAB:
                         pass
                     elif key.code == KEY_ENTER:
                         if (confirmExit(currentPath)):
-                            pathHit = True 
+                            pathHit = True
                             end = True
                     elif key.code != KEY_DELETE:
                         tmpPath += str(key)
@@ -65,7 +68,7 @@ def run():
             autoComplete = printFiles(currentPath, tmpPath)
 
     # TODO: the following line does not properly change directories
-    subprocess.run(["cd", currentPath])
+    changeParentDirectory(currentPath)
 
 
 def printFiles(path, tmpPath):
@@ -90,7 +93,8 @@ def printFiles(path, tmpPath):
 
     return None
 
-def confirmExit(path): 
+
+def confirmExit(path):
     with term.location(inputCoordinates[0], inputCoordinates[1]):
         print(term.clear_eol() + term.bold_bright_white_on_red(term.center("exit in: " + path + "   [ENTER]")))
         with term.cbreak():
@@ -98,5 +102,22 @@ def confirmExit(path):
                 return True
     return False
 
+
+def changeParentDirectory(path):
+    print(term.home() + term.clear())
+    term.close()
+    with open(shellScriptPath, "w") as f:
+        string = path + "\n"
+        f.write(string)
+    # subprocess.run(["chdir", "/home/jorstad/git"], shell=True, executable="/bin/bash")
+
+def checkConfig():
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.ini")
+
+def configBashrc():
+    pass
+
 if __name__ == "__main__":
+    # if not checkConfig():
+    #     configBashrc()
     run()
