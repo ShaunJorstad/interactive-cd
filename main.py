@@ -67,7 +67,6 @@ def run():
 
             autoComplete = printFiles(currentPath, tmpPath)
 
-    # TODO: the following line does not properly change directories
     changeParentDirectory(currentPath)
 
 
