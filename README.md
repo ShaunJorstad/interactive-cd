@@ -2,7 +2,7 @@
 interactive CD command to make changing directories more intuitive
 
 # install 
-clone repo locally, edit variables in `main.sh` to ponit to the correct files 
+clone repo locally, edit variables in `main.sh` to point to the correct files 
 
 # use 
 run the program with `source {path/to/main/sh}` 
