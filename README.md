@@ -3,9 +3,10 @@ interactive CD command to make changing directories more intuitive
 
 # install 
 clone repo locally, edit variables in `main.sh` to point to the correct files 
+install the dependency blessed `pip3 install blessed`
 
 # use 
-run the program with `source {path/to/main/sh}` 
+run the program with `source {path/to/main/sh}` (making this an alias in a shell config is convenient)
 
 Typing in the program will filter the current files and directories in the Working Directory. 
 When there is a single match hit `tab` to autocomplete the rest of the filepath, navigate to that directory, and reset the prompt. 
